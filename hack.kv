@@ -1,0 +1,158 @@
+<RoundButton@Button>
+    background_color: 175/255, 250/255, 120/255, 1
+    background_normal:'menu_b_norm4.png'
+    background_down:'menu_b_down4.png'
+
+<GoalButton@Button>
+    font_name: 'RobotoLight.ttf'
+    font_size: root.width * 0.08
+    text_size: self.width-10, self.height
+    halign: 'right'
+    valign: 'middle'
+    color: 1, 1, 1, 1
+    size_hint: 1, 0.1
+
+<FirstScreen@BoxLayout>:
+    canvas.before:
+        Color:
+            rgba: 100/255, 150/255, 255/255, 1
+        Rectangle:
+            # source: 'bg.jpg'
+            pos: self.pos
+            size: self.size
+    orientation:'vertical'
+	# Image:
+	# 	source:'title.png'
+ #        size_hint: 1, 0.3
+
+    Label:
+        font_name: 'RobotoLight.ttf'
+        font_size: root.width * 0.15
+        color: 1, 1, 1, 1
+        size_hint: 1, 0.1
+        text: 'GIVEMETRIP'
+
+    Label:
+        font_name: 'RobotoLight.ttf'
+        font_size: root.width * 0.1
+        color: 1, 1, 1, 1
+        size_hint: 1, 0.1
+        text: 'Trip goal:'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10, 10, 10, 10
+        spacing: 15
+        GoalButton:
+            background_color: 1, 1, 1, 0.5
+            font_size:
+            text: 'Beach'
+        GoalButton:
+            background_color: 1, 1, 1, 0.5
+            text: 'Active sport'
+        GoalButton:
+            background_color: 1, 1, 1, 0.5
+            text: 'Excursions'
+        GoalButton:
+            background_color: 1, 1, 1, 0.5
+            text: 'Winter'
+
+
+    # FloatLayout:
+    #     AnchorLayout:
+    #         anchor_x: 'center'
+    #         anchor_y: 'center'
+    #         Label:
+    #             text: 'GOAL OF TRIP'
+    #             font_size: root.width * 0.05
+    #     AnchorLayout:
+    #         padding: 5, 5, 5, 5
+    #         anchor_x: 'right'
+    #         RoundButton:
+    #             text:'KILL TRIP'
+    #             size_hint: 0.25, 0.25
+    #     AnchorLayout:
+    #         padding: 5, 5, 5, 5
+    #         anchor_x: 'right'
+    #         anchor_y: 'top'
+    #         RoundButton:
+    #             text:'DRUG TRIP'
+    #             size_hint: 0.25, 0.25
+    #     AnchorLayout
+    #         padding: 5, 5, 5, 5
+    #         anchor_x: 'left'
+    #         RoundButton:
+    #             text:'MUSIC TRIP'
+    #             size_hint: 0.25, 0.25
+
+
+
+<SecondScreen>:
+    canvas.before:
+        Color:
+            rgba: 100/255, 150/255, 255/255, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    orientation: 'vertical'
+    Label:
+        font_name: 'RobotoLight.ttf'
+        font_size: root.width * 0.1
+        text: 'Your budget:'
+        color: 1, 1, 1, 1
+        size_hint: 1, 0.1
+    FloatLayout:
+        Slider:
+            canvas:
+                Color:
+                    rgb: 100/255, 150/255, 255/255, 1
+                BorderImage:
+                    border: (0, 18, 0, 18) if self.orientation == 'horizontal' else (18, 0, 18, 0)
+                    pos: (self.x, self.center_y - 18) if self.orientation == 'horizontal' else (self.center_x - 18, self.y)
+                    size: (self.width, 37) if self.orientation == 'horizontal' else (37, self.height - 5)
+                    source: 'blank.png'
+                Rectangle:
+                    pos: (self.value_pos[0] - 16, self.center_y - 17) if self.orientation == 'horizontal' else (self.center_x - 16, self.value_pos[1] - 16)
+                    size: (32 * 0, 32 * 0)
+                    source: 'blank.png'
+                Color:
+                    rgb: 100/255,(150/255)*(budget_slider.value/budget_slider.max),(50/255)
+                Rectangle:
+                    pos: self.pos
+                    size: root.width, 0.9 * root.height * (budget_slider.value/budget_slider.max)
+            # canvas:
+            #     Color:
+            #         rgb: 230/255,100/255*(budget_slider.value/budget_slider.max),50/255*(budget_slider.value/budget_slider.max)
+            #     Rectangle:
+            #         pos: self.pos
+            #         size: root.width, 0.9 * root.height * (budget_slider.value/budget_slider.max)
+            id: budget_slider
+            color: 0, 0, 0, 0
+            max_size: 0.9 * root.height
+            min: 10000
+            value: 150000
+            max: 1000000
+            step: 500
+            orientation: 'vertical'
+        Button:
+            canvas:
+                Color:
+                    # rgb: 150/255, 230/255, 80/255
+                    rgb: 1,1,1
+                Ellipse:
+                    pos: budget_button.pos
+                    size: budget_button.width, budget_button.width
+                    source: 'ok.png'
+
+            id: budget_button
+            background_color: 1, 1, 1, 0
+            pos: root.width - self.width - 10, 10
+            size_hint: 0.15, 0.15
+            font_size: 1
+            text: 'D:'
+        AnchorLayout:
+            anchor_y: 'center'
+            anchor_x: 'center'
+            Label:
+                font_name: 'RobotoLight.ttf'
+                font_size: root.width * 0.2
+                text: str(int(round(budget_slider.value, -2)))
