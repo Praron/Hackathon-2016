@@ -15,6 +15,7 @@ Builder.load_string("""
         text: "A label"
 """)
 
+
 class ButtonsApp(App, BoxLayout):
     def build(self):
         return self

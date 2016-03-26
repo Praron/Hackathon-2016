@@ -21,9 +21,6 @@
             pos: self.pos
             size: self.size
     orientation:'vertical'
-	# Image:
-	# 	source:'title.png'
- #        size_hint: 1, 0.3
 
     Label:
         font_name: 'RobotoLight.ttf'
@@ -31,58 +28,67 @@
         color: 1, 1, 1, 1
         size_hint: 1, 0.1
         text: 'GIVEMETRIP'
-
+        size: self.size
+        valign: 'top'
     Label:
         font_name: 'RobotoLight.ttf'
         font_size: root.width * 0.1
         color: 1, 1, 1, 1
         size_hint: 1, 0.1
         text: 'Trip goal:'
+        size: self.size
+        valign: 'bottom'
+    
     BoxLayout:
         orientation: 'vertical'
         padding: 10, 10, 10, 10
         spacing: 15
         GoalButton:
             background_color: 1, 1, 1, 0.5
-            font_size:
-            text: 'Beach'
+            font_size: root.width * 0.08
+            text: 'LYING UNDER SUN'
+            Image:
+                source: 'menu_sun.png'
+                height: self.parent.height * 0.6
+                x: self.parent.x
+                y: self.parent.y + self.parent.height * 0.2
         GoalButton:
             background_color: 1, 1, 1, 0.5
-            text: 'Active sport'
+            font_size: root.width * 0.08
+            text: 'FUN WITH FAMILY'
+            Image:
+                source: 'menu_family.png'
+                height: self.parent.height * 0.6
+                x: self.parent.x
+                y: self.parent.y + self.parent.height * 0.2
         GoalButton:
             background_color: 1, 1, 1, 0.5
-            text: 'Excursions'
+            font_size: root.width * 0.08
+            text: 'RECREATION'
+            Image:
+                source: 'menu_food.png'
+                height: self.parent.height * 0.6
+                x: self.parent.x
+                y: self.parent.y + self.parent.height * 0.2
         GoalButton:
             background_color: 1, 1, 1, 0.5
-            text: 'Winter'
+            font_size: root.width * 0.08
+            text: 'TOURS'
+            Image:
+                source: 'menu_tour.png'
+                height: self.parent.height * 0.6
+                x: self.parent.x
+                y: self.parent.y + self.parent.height * 0.2
+        GoalButton:
+            background_color: 1, 1, 1, 0.5
+            font_size: root.width * 0.08
+            text: 'UNUSUAL'
+            Image:
+                source: 'menu_unus.png'
+                height: self.parent.height * 0.6
+                x: self.parent.x
+                y: self.parent.y + self.parent.height * 0.2
 
-
-    # FloatLayout:
-    #     AnchorLayout:
-    #         anchor_x: 'center'
-    #         anchor_y: 'center'
-    #         Label:
-    #             text: 'GOAL OF TRIP'
-    #             font_size: root.width * 0.05
-    #     AnchorLayout:
-    #         padding: 5, 5, 5, 5
-    #         anchor_x: 'right'
-    #         RoundButton:
-    #             text:'KILL TRIP'
-    #             size_hint: 0.25, 0.25
-    #     AnchorLayout:
-    #         padding: 5, 5, 5, 5
-    #         anchor_x: 'right'
-    #         anchor_y: 'top'
-    #         RoundButton:
-    #             text:'DRUG TRIP'
-    #             size_hint: 0.25, 0.25
-    #     AnchorLayout
-    #         padding: 5, 5, 5, 5
-    #         anchor_x: 'left'
-    #         RoundButton:
-    #             text:'MUSIC TRIP'
-    #             size_hint: 0.25, 0.25
 
 
 
@@ -115,16 +121,11 @@
                     size: (32 * 0, 32 * 0)
                     source: 'blank.png'
                 Color:
-                    rgb: 100/255,(150/255)*(budget_slider.value/budget_slider.max),(50/255)
+                    rgb: 100/255,(200/255)*(budget_slider.value/budget_slider.max),(50/255)
                 Rectangle:
                     pos: self.pos
                     size: root.width, 0.9 * root.height * (budget_slider.value/budget_slider.max)
-            # canvas:
-            #     Color:
-            #         rgb: 230/255,100/255*(budget_slider.value/budget_slider.max),50/255*(budget_slider.value/budget_slider.max)
-            #     Rectangle:
-            #         pos: self.pos
-            #         size: root.width, 0.9 * root.height * (budget_slider.value/budget_slider.max)
+
             id: budget_slider
             color: 0, 0, 0, 0
             max_size: 0.9 * root.height
@@ -156,3 +157,118 @@
                 font_name: 'RobotoLight.ttf'
                 font_size: root.width * 0.2
                 text: str(int(round(budget_slider.value, -2)))
+
+
+
+<ResultScreen>:
+    canvas.before:
+        Color:
+            rgba: 100/255, 150/255, 255/255, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    orientation: 'vertical'
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgb: 120/255, 220/255, 70/255
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: 'horizontal'
+        size_hint: 1, 0.5
+        padding: 5
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                size_hint: 1, 0.2
+                text: '$10 000 - $15 000'
+                text_size: self.width - 20, self.height
+                valign: 'middle'
+                halign: 'center'
+                font_name: 'RobotoLight.ttf'
+                font_size: root.width * 0.05
+            Label:
+                size_hint: 1, 0.4
+                text: 'Country'
+                text_size: self.width - 20, self.height
+                valign: 'top'
+                halign: 'left'
+                font_name: 'RobotoLight.ttf'
+                font_size: root.width * 0.12
+            Label:
+                size_hint: 1, 0.6
+                text: 'Description fubar\n Lorem ipsum'
+                text_size: self.width - 20, self.height
+                valign: 'middle'
+                halign: 'left'
+                font_name: 'RobotoLight.ttf'
+                font_size: root.width * 0.07
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 0.4, 1
+            Label:
+                size_hint: 1, 0.4
+                text: '+40'
+                text_size: self.width, self.height
+                valign: 'top'
+                halign: 'left'
+                font_name: 'RobotoLight.ttf'
+                font_size: root.width * 0.12
+
+            Button:
+                size_hint: 0.4, 1
+                canvas:
+                    Ellipse:
+                        pos: self.parent.x + self.parent.width - self.width * 2.4, self.parent.y + self.parent.height * 0.1
+                        size: self.parent.height * .5, self.parent.height * .5
+                        source: 'arrow.png'
+                background_color: 1, 1, 1, 0
+                on_press: print("Tu-tu-ru~")
+    # ScrollView:
+    #     size: 400, 400
+    #     BoxLayout:
+    #         height: sum(x.height for x in self.children)
+    #         orientation: 'vertical'
+    #         Button:
+    #             size_hint_y: None
+    #             height: 100
+    #             background_color: 1, 1, 1, 1
+    #         Button:
+    #             size_hint_y: None
+    #             height: 100
+    #             background_color: 1, 1, 1, 1
+    #         Button:
+    #             size_hint_y: None
+    #             height: 100
+    #             background_color: 1, 1, 1, 1
+    #         Button:
+    #             size_hint_y: None
+    #             height: 100
+    #             background_color: 1, 1, 1, 1
+    #         Button:
+    #             size_hint_y: None
+    #             height: 100
+    #             background_color: 1, 1, 1, 1
+    #         Button:
+    #             size_hint_y: None
+    #             height: 100
+    #             background_color: 1, 1, 1, 1
+    #         Button:
+    #             size_hint_y: None
+    #             height: 100
+    #             background_color: 1, 1, 1, 1
+    #         Button:
+    #             size_hint_y: None
+    #             height: 100
+    #             background_color: 1, 1, 1, 1
+    #         
+# <TestingScreen>:
+#     GridLayout:
+#         cols: 1
+#         padding: 10
+#         spacing: 10
+#         size_hint: None, None
+#         width: 500
+#         self.bind(minimum_height=self.setter('height'))
